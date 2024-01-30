@@ -1818,7 +1818,7 @@ categorias = {
     "Deporte": "img/deporte.png"
 };
 
-let puntuacion;
+let puntuacion = [];
 
 let preguntasMostradas = [];
 
@@ -1828,8 +1828,6 @@ let tiempoRestante = 30
 
 function cargarPregunta(categoria = "") { 
     clearTimeout(temporizador);
-
-    puntuacion = 0;
 
     tiempoRestante = 30;
 
@@ -1863,8 +1861,6 @@ function cargarPregunta(categoria = "") {
     const respuestasLista = document.getElementById("respuesta"); 
     respuestasLista.innerHTML = "";  
 
-    // respuestas.sort(() => Math.random() - 0.5);
-
     const respuestaCorrectaIndex = respuestas.findIndex(respuesta => respuesta === respuesta_correcta);
 
     for (let i = respuestas.length - 1; i > 0; i--) {
@@ -1888,34 +1884,27 @@ function cargarPregunta(categoria = "") {
                 seleccionada.classList.remove("seleccionado");
             }
             li.classList.add("seleccionado");
-
+            
             if (respuesta === respuesta_correcta) {
+                clearInterval(temporizador);
                 mostrarMensaje("Respuesta Correcta!","success");
-                puntuacion += 100;
+                puntuacion.push(100);
             } else {
+                clearInterval(temporizador);
                 mostrarMensaje(`La Respuesta Correcta es: ${respuesta_correcta}`,"danger");
-                if (puntuacion <= 0) {
-                    puntuacion = 0
-                } else {
-                    puntuacion -= 50;
-                }
+                puntuacion.push(-50);
             }
-            document.getElementById("puntos").textContent = `Puntos: ${puntuacion}`;
-            clearTimeout(temporizador);
-            setTimeout(cargarPregunta, 2000)
-            setTimeout(mostrarMensaje, 2000)
+            const puntuacionTotal = puntuacion.reduce((total, puntuacion) => total + puntuacion, 0);
+            document.getElementById("puntos").textContent = `Puntos: ${puntuacionTotal}`;
+            
+
+            setTimeout(() => {
+                cargarPregunta();
+                mostrarMensaje("");
+            }, 2000)
         };
         respuestasLista.appendChild(li); 
     });
-
-    temporizador = setInterval(() => {
-        tiempoRestante--;
-
-        if (tiempoRestante <= 0) {
-            cargarPregunta();
-        }
-        document.getElementById('tiempo-restante').textContent = `${tiempoRestante}`; 
-    }, 1000);
 
     const relojPuntuacion = document.getElementById("reloj-puntuacion");
 
@@ -1943,7 +1932,22 @@ function cargarPregunta(categoria = "") {
         if (enlace) { 
             enlace.parentNode.classList.add("active"); 
         } 
-    } 
+    }
+    
+    temporizador = setInterval(() => {
+        tiempoRestante--;
+
+        if (tiempoRestante <= 0) {
+            clearInterval(temporizador);
+            mostrarMensaje("Se te acabo el tiempo","danger");
+
+            setTimeout(() => {
+                cargarPregunta();
+                mostrarMensaje("");
+            }, 1000);
+        }
+        document.getElementById('tiempo-restante').textContent = `${tiempoRestante}`; 
+    }, 1000);
 }
 function seleccionarCategoria(categoria) {
     cargarPregunta(categoria);
