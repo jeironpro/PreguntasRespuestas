@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     cargarPregunta();
 })
 const preguntasRespuestas = [
+    // GEOGRAFIA
     {
         "pregunta": "¿Cuál es la capital de Francia?",
         "respuestas": ["París", "Londres", "Madrid", "Berlín"],
@@ -18,7 +19,7 @@ const preguntasRespuestas = [
         "pregunta": "¿Cuál es el río más largo de América del Sur?",
         "respuestas": [" Amazonas", "Nilo", "Misisipi", "Yangtse"],
         "respuesta_correcta": "Amazonas",
-        "categoria": "Amazonas"
+        "categoria": "Geografia"
     },
     {
         "pregunta": "¿En qué país se encuentra el monte Kilimanjaro?",
@@ -302,6 +303,7 @@ const preguntasRespuestas = [
         "respuesta_correcta": "Abuja", 
         "categoria": "Geografia" 
     },
+    // LITERATURA
     { 
         "pregunta": "¿Quién escribió 'Don Quijote de la Mancha'?", 
         "respuestas": ["Miguel de Cervantes", "Federico García Lorca", "Gabriel García Márquez", "Jorge Luis Borges"], 
@@ -509,8 +511,8 @@ const preguntasRespuestas = [
     { 
         "pregunta": "¿Quién escribió 'Rayuela'?", 
         "respuestas": ["Julio Cortázar", "Jorge Luis Borges", "Gabriel García Márquez", "Mario Vargas Llosa"], 
-        "respuesta_correcta": 
-        "Julio Cortázar", "categoria": "Literatura" 
+        "respuesta_correcta": "Julio Cortázar", 
+        "categoria": "Literatura" 
     },
     { 
         "pregunta": "¿Quién es el autor de 'La ciudad y los perros'?", 
@@ -602,6 +604,7 @@ const preguntasRespuestas = [
         "respuesta_correcta": "Alexandre Dumas", 
         "categoria": "Literatura" 
     },
+    // HISTORIA
     { 
         "pregunta": "¿En qué año llegó Cristóbal Colón a América?", 
         "respuestas": ["1492", "1500", "1521", "1476"], 
@@ -901,6 +904,7 @@ const preguntasRespuestas = [
         "respuesta_correcta": "Portugal", 
         "categoria": "Historia"
     },
+    // CIENCIA
     { 
         "pregunta": "¿Cuál es el elemento más abundante en la atmósfera de la Tierra?", 
         "respuestas": ["Nitrógeno", "Oxígeno", "Argón", "Dióxido de carbono"], 
@@ -1201,6 +1205,7 @@ const preguntasRespuestas = [
         "respuesta_correcta": "Aluminio", 
         "categoria": "Ciencia" 
     },
+    // ARTE
     { 
         "pregunta": "¿Quién pintó la Mona Lisa?", 
         "respuestas": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Rembrandt"], 
@@ -1501,6 +1506,7 @@ const preguntasRespuestas = [
         "respuesta_correcta": "La traición de las imágenes", 
         "categoria": "Arte"
     },
+    // DEPORTE
     { 
         "pregunta": "¿En qué deporte se utiliza una pala para golpear una pelota sobre una red?", 
         "respuestas": ["Tenis", "Pádel", "Bádminton", "Ping pong"], 
@@ -1812,17 +1818,35 @@ categorias = {
     "Deporte": "img/deporte.png"
 };
 
-let puntuacion = 0
+let puntuacion;
+
+let preguntasMostradas = [];
+
+let temporizador;
+
+let tiempoRestante = 30
 
 function cargarPregunta(categoria = "") { 
-    const preguntasEnCategoria = preguntasRespuestas.filter(pregunta => pregunta.categoria === categoria);
+    clearTimeout(temporizador);
 
-    let preguntaAleatoria;
-    if (preguntasEnCategoria.length > 0) {
-        preguntaAleatoria = preguntasEnCategoria[Math.floor(Math.random() * preguntasEnCategoria.length)];
-    } else {
-        preguntaAleatoria = preguntasRespuestas[Math.floor(Math.random() * preguntasRespuestas.length)];
+    puntuacion = 0;
+
+    tiempoRestante = 30;
+
+    let preguntasDisponibles = preguntasRespuestas.filter(pregunta => !preguntasMostradas.includes(pregunta));
+
+    if (preguntasDisponibles.length === 0) {
+        preguntasMostradas = [];
+        preguntasDisponibles = preguntasRespuestas;
     }
+
+    if (categoria !== "") {
+        preguntasDisponibles = preguntasDisponibles.filter(pregunta => pregunta.categoria === categoria);
+    }
+
+    const preguntaAleatoria = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)];
+
+    preguntasMostradas.push(preguntaAleatoria);
 
     const pregunta = preguntaAleatoria.pregunta; 
     const respuestas = preguntaAleatoria.respuestas; 
@@ -1838,6 +1862,8 @@ function cargarPregunta(categoria = "") {
 
     const respuestasLista = document.getElementById("respuesta"); 
     respuestasLista.innerHTML = "";  
+
+    respuestas.sort(() => Math.random() - 0.5);
 
     respuestas.forEach((respuesta, index) => {
         const li = document.createElement("li"); 
@@ -1863,17 +1889,44 @@ function cargarPregunta(categoria = "") {
                 }
             }
             document.getElementById("puntos").textContent = `Puntos: ${puntuacion}`;
-            setTimeout(cargarPregunta, 1500)
-            setTimeout(mostrarMensaje, 1500)
+            clearTimeout(temporizador);
+            setTimeout(cargarPregunta, 2000)
+            setTimeout(mostrarMensaje, 2000)
         };
         respuestasLista.appendChild(li); 
     });
+
+    temporizador = setInterval(() => {
+        tiempoRestante--;
+
+        if (tiempoRestante <= 0) {
+            cargarPregunta();
+        }
+        document.getElementById('tiempo-restante').textContent = `${tiempoRestante}`; 
+    }, 1000);
+
+    function cargarPuntuacion() {
+        const puntuacionGuardada = localStorage.getItem("puntuacion");
+
+        if (puntuacionGuardada !== null) {
+            puntuacion = parseInt(puntuacionGuardada);
+
+            actualizarPuntuacion();
+        }
+    }
+
+    const relojPuntuacion = document.getElementById("reloj-puntuacion");
 
     function mostrarMensaje(mensaje, tipo) {
         const alerta = document.getElementById("alerta");
         alerta.textContent = mensaje;
         alerta.classList.remove("success", "danger");
         alerta.classList.add(tipo);
+        relojPuntuacion.style.marginTop = '25px';
+
+        if (!mensaje) {
+            relojPuntuacion.style.marginTop = '0';
+        };
     }
 
     document.getElementById("imagen-categoria").src = iconoCategoria;
