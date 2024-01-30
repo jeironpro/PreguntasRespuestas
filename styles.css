@@ -242,6 +242,7 @@ h1 {
     h1 {
         color: #fff;
         font-size: 22px;
+        display: block;
     }
     
     .alerta {
