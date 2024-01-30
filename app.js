@@ -1863,7 +1863,7 @@ function cargarPregunta(categoria = "") {
     const respuestasLista = document.getElementById("respuesta"); 
     respuestasLista.innerHTML = "";  
 
-    respuestas.sort(() => Math.random() - 0.5);
+    respuestas.sort(() => Math.random() * respuestas);
 
     respuestas.forEach((respuesta, index) => {
         const li = document.createElement("li"); 
@@ -1900,20 +1900,12 @@ function cargarPregunta(categoria = "") {
         tiempoRestante--;
 
         if (tiempoRestante <= 0) {
+            mostrarMensaje("Se te acabo el tiempo","danger");
             cargarPregunta();
         }
         document.getElementById('tiempo-restante').textContent = `${tiempoRestante}`; 
     }, 1000);
-
-    function cargarPuntuacion() {
-        const puntuacionGuardada = localStorage.getItem("puntuacion");
-
-        if (puntuacionGuardada !== null) {
-            puntuacion = parseInt(puntuacionGuardada);
-
-            actualizarPuntuacion();
-        }
-    }
+    setTimeout(mostrarMensaje, 2000)
 
     const relojPuntuacion = document.getElementById("reloj-puntuacion");
 
