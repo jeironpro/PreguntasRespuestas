@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: url(../../static/img/background.jpg);
+    background-image: url(img/background.jpg);
     z-index: 1;
     background-repeat: no-repeat;
     background-size: cover;
