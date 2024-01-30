@@ -1534,7 +1534,7 @@ const preguntasRespuestas = [
     { 
         "pregunta": "¿Qué equipo ganó la última Copa Mundial de la FIFA?", 
         "respuestas": ["Francia", "Brasil", "Alemania", "Argentina"], 
-        "respuesta_correcta": "Francia", 
+        "respuesta_correcta": "Argentina", 
         "categoria": "Deporte" 
     },
     { 
@@ -1582,7 +1582,7 @@ const preguntasRespuestas = [
     { 
         "pregunta": "¿Quién es el máximo goleador en la historia de la NBA?", 
         "respuestas": ["Kareem Abdul-Jabbar", "LeBron James", "Michael Jordan", "Kobe Bryant"], 
-        "respuesta_correcta": "Kareem Abdul-Jabbar", 
+        "respuesta_correcta": "LeBron James", 
         "categoria": "Deporte" 
     },
     { 
@@ -1863,7 +1863,19 @@ function cargarPregunta(categoria = "") {
     const respuestasLista = document.getElementById("respuesta"); 
     respuestasLista.innerHTML = "";  
 
-    respuestas.sort(() => Math.random() * respuestas.length);
+    // respuestas.sort(() => Math.random() - 0.5);
+
+    const respuestaCorrectaIndex = respuestas.findIndex(respuesta => respuesta === respuesta_correcta);
+
+    for (let i = respuestas.length - 1; i > 0; i--) {
+        let j;
+        if (i !== respuestaCorrectaIndex) {
+            j = Math.floor(Math.random() * (i + 1));
+        } else {
+            j = Math.floor(Math.random() * i)
+        }
+        [respuestas[i], respuestas[j]] = [respuestas[j], respuestas[i]];
+    }
 
     respuestas.forEach((respuesta, index) => {
         const li = document.createElement("li"); 
@@ -1900,12 +1912,10 @@ function cargarPregunta(categoria = "") {
         tiempoRestante--;
 
         if (tiempoRestante <= 0) {
-            mostrarMensaje("Se te acabo el tiempo","danger");
             cargarPregunta();
         }
         document.getElementById('tiempo-restante').textContent = `${tiempoRestante}`; 
     }, 1000);
-    setTimeout(mostrarMensaje, 1500)
 
     const relojPuntuacion = document.getElementById("reloj-puntuacion");
 
