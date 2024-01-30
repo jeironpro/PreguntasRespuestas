@@ -1863,7 +1863,7 @@ function cargarPregunta(categoria = "") {
     const respuestasLista = document.getElementById("respuesta"); 
     respuestasLista.innerHTML = "";  
 
-    respuestas.sort(() => Math.random() * respuestas);
+    respuestas.sort(() => Math.random() * respuestas.length);
 
     respuestas.forEach((respuesta, index) => {
         const li = document.createElement("li"); 
@@ -1905,7 +1905,7 @@ function cargarPregunta(categoria = "") {
         }
         document.getElementById('tiempo-restante').textContent = `${tiempoRestante}`; 
     }, 1000);
-    setTimeout(mostrarMensaje, 2000)
+    setTimeout(mostrarMensaje, 1500)
 
     const relojPuntuacion = document.getElementById("reloj-puntuacion");
 

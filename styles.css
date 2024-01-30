@@ -60,12 +60,14 @@ h1 {
 .alerta {
     border: 1px solid transparent;
     border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
     color: #fff;
     font-size: 14px;
     font-weight: 600; 
     flex: 1;         
     flex-basis: 50%;
     left: 0;
+    margin: 0;
     padding: 8px 0;
     position: absolute;
     text-align: center;
