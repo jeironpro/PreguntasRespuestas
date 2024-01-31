@@ -1824,14 +1824,13 @@ let preguntasMostradas = [];
 
 let temporizador;
 
-let tiempoRestante = 30
+let tiempoRestante = 30;
 
 function cargarPregunta(categoria = "") { 
     clearTimeout(temporizador);
-
     tiempoRestante = 30;
 
-    let preguntasDisponibles = preguntasRespuestas.filter(pregunta => !preguntasMostradas.includes(pregunta));
+    let preguntasDisponibles = preguntasRespuestas.filter(pregunta => !preguntasMostradas.includes(pregunta) && (categoria === "*" || pregunta.categoria === categoria));
 
     if (preguntasDisponibles.length === 0) {
         preguntasMostradas = [];
