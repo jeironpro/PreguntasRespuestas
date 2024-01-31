@@ -1818,7 +1818,7 @@ categorias = {
     "Deporte": "img/deporte.png"
 };
 
-let puntuacion = [];
+let puntuacion = 0;
 
 let preguntasMostradas = [];
 
@@ -1888,11 +1888,15 @@ function cargarPregunta(categoria = "") {
             if (respuesta === respuesta_correcta) {
                 clearInterval(temporizador);
                 mostrarMensaje("Respuesta Correcta!","success");
-                puntuacion.push(100);
+                puntuacion += 100
             } else {
                 clearInterval(temporizador);
                 mostrarMensaje(`La Respuesta Correcta es: ${respuesta_correcta}`,"danger");
-                puntuacion.push(-50);
+                if (puntuacion <= 0) {
+                    puntuacion = 0;
+                } else {
+                    puntuacion -= 50;
+                }
             }
             const puntuacionTotal = puntuacion.reduce((total, puntuacion) => total + puntuacion, 0);
             document.getElementById("puntos").textContent = `Puntos: ${puntuacionTotal}`;
