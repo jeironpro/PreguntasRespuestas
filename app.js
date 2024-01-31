@@ -1898,14 +1898,12 @@ function cargarPregunta(categoria = "") {
                     puntuacion -= 50;
                 }
             }
-            const puntuacionTotal = puntuacion.reduce((total, puntuacion) => total + puntuacion, 0);
-            document.getElementById("puntos").textContent = `Puntos: ${puntuacionTotal}`;
+            document.getElementById("puntos").textContent = `Puntos: ${puntuacion}`;
             
-
             setTimeout(() => {
                 cargarPregunta();
                 mostrarMensaje("");
-            }, 2000)
+            }, 2000);
         };
         respuestasLista.appendChild(li); 
     });
