@@ -1822,7 +1822,11 @@ let puntuacion = 0;
 
 let preguntasMostradas = [];
 
+let preguntasPorCategorias = {};
+
 let temporizador;
+
+let relojPuntuacion;
 
 let tiempoRestante = 30;
 
@@ -1830,20 +1834,37 @@ function cargarPregunta(categoria = "") {
     clearTimeout(temporizador);
     tiempoRestante = 30;
 
-    let preguntasDisponibles = preguntasRespuestas.filter(pregunta => !preguntasMostradas.includes(pregunta) && (categoria === "*" || pregunta.categoria === categoria));
-
-    if (preguntasDisponibles.length === 0) {
+    if (preguntasMostradas.length === preguntasRespuestas.length) {
         preguntasMostradas = [];
-        preguntasDisponibles = preguntasRespuestas;
     }
+
+    let preguntasDisponibles = preguntasRespuestas.map((_, index) => index).filter(index => !preguntasMostradas.includes(index));
 
     if (categoria !== "") {
-        preguntasDisponibles = preguntasDisponibles.filter(pregunta => pregunta.categoria === categoria);
+        if (!preguntasPorCategorias.hasOwnProperty(categoria)) {
+            preguntasPorCategorias[categoria] = preguntasRespuestas.filter(pregunta => pregunta.categoria === categoria).length;
+        }
+        preguntasDisponibles = preguntasDisponibles.filter(index => preguntasRespuestas[index].categoria === categoria);
+
+        const preguntasMostradasCategoria = preguntasMostradas.filter(index => preguntasRespuestas[index].categoria === categoria).length;
+
+        if (preguntasMostradasCategoria === preguntasPorCategorias[categoria]) {
+            mostrarMensaje("Has seleccionada todas las preguntas de esta categoria","danger");
+            setTimeout(() => {
+                cargarPregunta();
+                mostrarMensaje("");
+            }, 2000);
+            return;
+        }
     }
 
-    const preguntaAleatoria = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)];
+    const preguntaAleatoriaIndex = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)];
 
-    preguntasMostradas.push(preguntaAleatoria);
+    preguntasMostradas.push(preguntaAleatoriaIndex);
+
+    const preguntaAleatoria = preguntasRespuestas[preguntaAleatoriaIndex];
+
+    console.log(preguntaAleatoriaIndex)
 
     const pregunta = preguntaAleatoria.pregunta; 
     const respuestas = preguntaAleatoria.respuestas; 
@@ -1907,18 +1928,14 @@ function cargarPregunta(categoria = "") {
         respuestasLista.appendChild(li); 
     });
 
-    const relojPuntuacion = document.getElementById("reloj-puntuacion");
+    relojPuntuacion = document.getElementById("reloj-puntuacion");
 
     function mostrarMensaje(mensaje, tipo) {
         const alerta = document.getElementById("alerta");
         alerta.textContent = mensaje;
         alerta.classList.remove("success", "danger");
         alerta.classList.add(tipo);
-        relojPuntuacion.style.marginTop = '25px';
-
-        if (!mensaje) {
-            relojPuntuacion.style.marginTop = '0';
-        };
+        relojPuntuacion.style.marginTop = mensaje ? '25px' : "0";
     }
 
     document.getElementById("imagen-categoria").src = iconoCategoria;
