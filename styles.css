@@ -57,6 +57,10 @@ h1 {
     background-color: #960000;
 }
 
+.contenedor_preguntas.algebra {
+    background-color: #754512;
+}
+
 .alerta {
     border: 1px solid transparent;
     border-radius: 10px 10px 0 0;
