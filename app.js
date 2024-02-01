@@ -1864,8 +1864,6 @@ function cargarPregunta(categoria = "") {
 
     const preguntaAleatoria = preguntasRespuestas[preguntaAleatoriaIndex];
 
-    console.log(preguntaAleatoriaIndex)
-
     const pregunta = preguntaAleatoria.pregunta; 
     const respuestas = preguntaAleatoria.respuestas; 
     const categoriaPregunta = preguntaAleatoria.categoria;
