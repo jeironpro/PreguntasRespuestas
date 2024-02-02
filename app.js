@@ -1852,7 +1852,7 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de √(81) + 5?", 
-        "respuestas": ["5", "6", "8", "9"], 
+        "respuestas": ["15", "16", "14", "19"], 
         "respuesta_correcta": "14", 
         "categoria": "Algebra" 
     }, 
@@ -1864,14 +1864,14 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (5^2) - (3^2)?", 
-        "respuestas": ["4", "6", "8", "12"], 
+        "respuestas": ["4", "16", "8", "12"], 
         "respuesta_correcta": "16", 
         "categoria": "Algebra" 
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (2 * 4) + (3 * 5)?", 
-        "respuestas": ["16", "22", "26", "32"], 
-        "respuesta_correcta": "26", 
+        "respuestas": ["16", "23", "26", "32"], 
+        "respuesta_correcta": "23", 
         "categoria": "Algebra" 
     }, 
     { 
@@ -1918,8 +1918,8 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (4 * 6) + (5 * 7)?", 
-        "respuestas": ["34", "46", "58", "70"], 
-        "respuesta_correcta": "58", 
+        "respuestas": ["34", "46", "59", "70"], 
+        "respuesta_correcta": "59", 
         "categoria": "Algebra" 
     }, 
     { 
@@ -1930,14 +1930,14 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de √(121) - 11?", 
-        "respuestas": ["2", "4", "5", "6"], 
-        "respuesta_correcta": "2", 
+        "respuestas": ["0", "1", "2", "11"], 
+        "respuesta_correcta": "0", 
         "categoria": "Algebra" 
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (11^2) - (9^2)?", 
-        "respuestas": ["1", "9", "18", "20"], 
-        "respuesta_correcta": "20", 
+        "respuestas": ["39", "42", "38", "40"], 
+        "respuesta_correcta": "40", 
         "categoria": "Algebra" 
     }, 
     { 
@@ -1954,7 +1954,7 @@ const preguntasRespuestas = [
     },
     { 
         "pregunta": "¿Cuál es el resultado de (2^3) + (3^2)?", 
-        "respuestas": ["11", "12", "13", "14"], 
+        "respuestas": ["14", "12", "13", "17"], 
         "respuesta_correcta": "17", 
         "categoria": "Algebra" 
     }, 
@@ -1996,13 +1996,13 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de √(144) + 7?", 
-        "respuestas": ["15", "16", "17", "18"], 
+        "respuestas": ["15", "16", "17", "19"], 
         "respuesta_correcta": "19", 
         "categoria": "Algebra" 
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (9 - 7)^2?", 
-        "respuestas": ["2", "4", "6", "8"], 
+        "respuestas": ["2", "8", "6", "4"], 
         "respuesta_correcta": "4", 
         "categoria": "Algebra" 
     }, 
@@ -2015,7 +2015,7 @@ const preguntasRespuestas = [
     { 
         "pregunta": "¿Cuál es el resultado de (8 * 5) + (9 * 4)?", 
         "respuestas": ["61", "66", "71", "76"], 
-        "respuesta_correcta": "77", 
+        "respuesta_correcta": "76", 
         "categoria": "Algebra" 
     }, 
     { 
@@ -2027,12 +2027,12 @@ const preguntasRespuestas = [
     { 
         "pregunta": "¿Cuál es el resultado de √(169) - 8?", 
         "respuestas": ["4", "5", "6", "7"], 
-        "respuesta_correcta": "1", 
+        "respuesta_correcta": "5", 
         "categoria": "Algebra" 
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (10^2) - (8^2)?", 
-        "respuestas": ["16", "24", "32", "40"], 
+        "respuestas": ["26", "36", "32", "40"], 
         "respuesta_correcta": "36", 
         "categoria": "Algebra" 
     }, 
@@ -2044,8 +2044,8 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de √(196) + 9?", 
-        "respuestas": ["17", "18", "19", "20"], 
-        "respuesta_correcta": "25", 
+        "respuestas": ["22", "18", "23", "20"], 
+        "respuesta_correcta": "23", 
         "categoria": "Algebra" 
     }, 
     { 
@@ -2056,13 +2056,13 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (8^2) - (5^2)?", 
-        "respuestas": ["9", "11", "13", "15"], 
+        "respuestas": ["39", "31", "13", "15"], 
         "respuesta_correcta": "39", 
         "categoria": "Algebra" 
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (6 * 7) + (8 * 9)?", 
-        "respuestas": ["106", "116", "126", "136"], 
+        "respuestas": ["114", "116", "126", "136"], 
         "respuesta_correcta": "114", 
         "categoria": "Algebra" 
     }, 
@@ -2074,14 +2074,14 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de √(225) - 10?", 
-        "respuestas": ["10", "11", "12", "13"], 
+        "respuestas": ["5", "11", "12", "13"], 
         "respuesta_correcta": "5", 
         "categoria": "Algebra" 
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de (13^2) - (11^2)?", 
-        "respuestas": ["22", "24", "26", "28"], 
-        "respuesta_correcta": "44", 
+        "respuestas": ["42", "44", "46", "48"], 
+        "respuesta_correcta": "48", 
         "categoria": "Algebra" 
     }, 
     { 
@@ -2092,10 +2092,10 @@ const preguntasRespuestas = [
     }, 
     { 
         "pregunta": "¿Cuál es el resultado de √(324) + 11?", 
-        "respuestas": ["18", "19", "20", "21"], 
-        "respuesta_correcta": "27", 
+        "respuestas": ["18", "29", "20", "21"], 
+        "respuesta_correcta": "29", 
         "categoria": "Algebra"
-    }
+    },
 ];
 
 categorias = {
