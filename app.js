@@ -1599,8 +1599,8 @@ const preguntasRespuestas = [
     },
     { 
         "pregunta": "¿Quién es el actual campeón de la Liga de Campeones de la UEFA?", 
-        "respuestas": ["Chelsea", "Real Madrid", "Bayern Munich", "Liverpool"], 
-        "respuesta_correcta": "Chelsea", 
+        "respuestas": ["Chelsea", "Manchester City", "Bayern Munich", "Liverpool"], 
+        "respuesta_correcta": "Manchester City", 
         "categoria": "Deporte" 
     },
     { 
@@ -1768,7 +1768,7 @@ const preguntasRespuestas = [
     { 
         "pregunta": "¿Quién es el actual campeón de la NBA?", 
         "respuestas": ["Milwaukee Bucks", "Los Angeles Lakers", "Golden State Warriors", "Toronto Raptors"], 
-        "respuesta_correcta": "Milwaukee Bucks", 
+        "respuesta_correcta": "Golden State Warriors", 
         "categoria": "Deporte"
     },
     { 
