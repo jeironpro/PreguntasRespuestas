@@ -10,10 +10,18 @@ body {
     z-index: 1;
 }
 
+main {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+}
+
 .contenedor {
-    margin: 20px auto;
     max-width: 600px;
     text-align: center;
+    width: 100%;
 }
 
 h1 {
